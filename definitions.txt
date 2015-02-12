@@ -1,0 +1,17 @@
+lambda: average arrival rate
+1/lambda: average time between arrivals
+S: size of a job - how long does it take to process in absence of other jobs
+E[S]: expected service time
+mu = 1/E[S] : average service rate
+T: response time
+E[T]: mean response time
+T_q: waiting/queuing time
+N_q: number of jobs in the queue
+N: number of jobs in the system
+rho_i: Device utilization of device i (fraction of time busy)
+X_i: Throughput of device i (rate of completions)
+
+Equations:
+E[T] = E[Tq] + E[S] (response time = queuing time + compute time)
+X_i = mu_i * rho_i (service_rate * utilization = throughput)
+rho_i = X_i * E[S] (Utilization Law) (utilization = throughput * compute time)
