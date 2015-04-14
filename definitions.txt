@@ -21,6 +21,26 @@ Z     : think time (time between receiving end of 1 job and starting a new one)
 R     : response time (time it takes system to do the work)
 T     : system time
 
+* Probability
+P{E v F} = P{E} + P{F} - P{E ^ F}
+P{E | F} = P{E ^ F}/P{F}
+independence: P{E ^ F} = P{E} * P{F}
+conditional independence: P{E ^ F | G} = P{E | G} * P{F | G}
+Bayes: P{F | E} = P{E | F} * P{F} / P{E}
+E[X]   : expected value : sum of (p * X)
+Var(X) : E[(X - (E[X]))^2]
+C^2_x  : squared coefficient of variation = Var(X)/(E[X]^2)
+
+* Distributions:
+Bernoulli(p): X = {1 with P=p; 0 with P=1-p} (coinflip)
+Binomial(n, p): n independent Bernoullis, X = {i where i is number of Bernoulli 1's}
+                (n choose i) * p^i * (1-p)^(n-i)
+Geometric(x): number of Bernoulli trials until a 1 is reached
+              (1-p)^(i-1)*p
+Poisson(lambda): p(i) = e^-lambda * lambda^i / i!
+Uniform(a, b): p(x) = 1/(a - b) if a<=x<=b
+Exp(lambda): p(x) = lambda * e^(-lambda*x)
+Pareto(a): p(x) = a * x^(-a-1)  (a usually 0<=a<2)
 
 Equations:
 * Open-system
