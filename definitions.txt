@@ -30,7 +30,8 @@ Bayes: P{F | E} = P{E | F} * P{F} / P{E}
 E[X]   : expected value : sum of (p * X)
 Var(X) : E[(X - (E[X]))^2]
 C^2_x  : squared coefficient of variation = Var(X)/(E[X]^2)
-
+positive correlation: P{A|B} > P{A}
+covariance(X,Y) = E[(X-E[X])(Y-E[Y])]
 * Distributions:
 Bernoulli(p): X = {1 with P=p; 0 with P=1-p} (coinflip)
 Binomial(n, p): n independent Bernoullis, X = {i where i is number of Bernoulli 1's}
