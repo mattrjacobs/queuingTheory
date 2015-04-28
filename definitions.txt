@@ -53,3 +53,9 @@ E[T] = E[R] + E[Z]
 mu = 1/E[S]
 X_i = mu_i * rho_i (service_rate * utilization = throughput)
 rho_i = X_i * E[S] (Utilization Law) (utilization = throughput * compute time)
+E[N] = lambda * E[T] (Little's Law)
+N = X * E[T] (Little's Law for closed systems)
+rho_i = lambda_i * E[S_i] = X_i * E[S_i]
+E[R] = N/X - E[Z] (Response Time Law for Closed Systems)
+X_i = E[V_i] * X (Forced flow)
+rho_i = X * E[D_i]

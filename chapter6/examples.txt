@@ -1,0 +1,104 @@
+Example 1:
+
+E[R] = 15
+E[Z] = 5
+N = 10
+
+E[R] = N/X - E[Z]
+
+Therefore, X = 0.5 jobs/sec
+
+Example 2:
+
+X_disk3 = 40
+E[S_disk3] = 0.0225 sec
+E[N_disk3] = 4
+
+a) What is utilization at disk3?
+
+rho_i = X_i * E[S_i]
+rho_disk3 = X_disk3 * E[S_disk3]
+rho_disk3 = 0.9 (90% utilization)
+
+b) What is mean time spent queuing at disk 3?
+
+E[N_queue_disk_3] = X_disk3 * E[S_queue_disk_3]
+E[N_queue_disk_3] = 4 - 0.9 = 3.1
+
+3.1 = 40 * E[S_queue_disk_3]
+E[S_queue_disk_3] = 0.0775 sec
+
+c)
+E[Number of ready users] = 7.5
+N = 10
+E[Z] = 5 sec
+
+What is system throughput?
+E[R] = N/X - E[Z]
+E[R] = 10/X - 5
+E[R] + 5 = 10/X
+X = 10/(E[R] + 5)
+
+E[R] = 7.5/X (non-thinking portion)
+
+So X = 10/(7.5/X + 5)
+X = 10/((7.5 + 5X)/X)
+X = 10X/(7.5 + 5X)
+5X^2 + 7.5X = 10X
+X + 1.5 = 2
+X = 0.5
+
+Example 3)
+
+Single FCFS queue with capacity of 7: 1 job to serve and buffer for 6
+Arrival that find full buffer are dropped
+
+lambda = 3
+mu = 4
+
+In this case, lambda not always equal to X, since some arrivals get dropped
+Number of arrivals that don't get dropped = lambda(1-P{7 jobs in system})
+
+Forced Flow example:
+25 terminals (N = 25)
+18 seconds think time (E[Z] = 18)
+20 visits to a specific disk on average (E[V_disk] = 20)
+30% utilization of this disk (rho_disk = 0.3)
+0.025 sec average service time on visit to that disk (E[S_disk] = 0.025)
+
+What is E[R]?
+
+E[R] = N/X - E[Z] = 25/X - 18
+rho_i = X_i * E[S] (Utilization Law)
+0.3 = X_i * 0.025
+X_i = 12
+X_i = E[V_i] * X
+12 = 20 * X
+X = 0.6
+E[R] = 25/0.6 - 18 = 41.67 - 18 = 23.67 sec
+
+Harder Example)
+* Interactive System
+* Central subsystem consists of CPU and 3 disks
+* Swapping may occur.  If it does, user request must fetch memory back and this has a queue
+
+N = 23
+E[Z] = 21
+X = 0.45 interactions/sec
+E[N_getting_memory] = 11.65
+E[V_cpu] = 3
+E[S_cpu] = .21 sec
+
+What is average time that elapses between getting a memory partition and completing the interaction?
+
+E[time in central subsystem] = E[Response Time] - E[Time to get memory]
+
+E[Response Time] = N/X - E[Z] = 30.11 sec
+
+E[Time to get memory] = 11.65/0.45 = 25.88 sec
+
+E[time in central subsystem] = 4.23 sec
+
+What is CPU utilization?
+
+rho_cpu = X_cpu * E[S] = E[V_cpu] * X * E[S_cpu] = 3 * 0.45 * 0.21 = 28.35%
