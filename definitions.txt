@@ -15,6 +15,7 @@ N_q   : number of jobs in the queue
 N     : number of jobs in the system
 rho_i : Device utilization of device i (fraction of time busy)
 X_i   : Throughput of device i (rate of completions)
+Slowdown(j) : T(j)/S(j)
 
 * Closed-system specific
 Z     : think time (time between receiving end of 1 job and starting a new one)
