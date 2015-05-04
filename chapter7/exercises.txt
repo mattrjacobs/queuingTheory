@@ -1,0 +1,98 @@
+1)
+E[Z] = 18
+E[D_cpu] = 5 sec
+E[D_disk_a] = 4 sec
+E[D_disk_b] = 3 sec
+
+D = 12 sec
+D_max = 5 sec
+
+X <= min(N/30, 1/5)
+E[R] >= max(12, 5N-18)
+
+2) Improving only one component:
+
+If D_max does not change and N is high, then X does not change either
+
+7.4)
+N = 20
+E[Z] = 5
+
+System A: D_cpu = 4.6, D_disk = 4.0
+System B: D_cpu = 4.9, D_disk = 1.9
+
+A throughput:
+D = 8.6, D_max = 4.6
+X <= min(20/13.6, 1/4.6) = 1/4.6
+
+B throughput:
+D = 6.8, D_max = 4.9
+X <= min(20/11.8, 1/4.9) = 1/4.9
+
+A has higher throughput
+
+7.4.2)
+T = 650
+B_cpu = 400
+B_slowdisk = 100
+B_fastdisk = 600
+C = C_cpu = 200 jobs
+C_slowdisk = 2000 jobs
+C_fastdisk = 20000 jobs
+E[Z] = 15 s
+N = 20 users
+
+D_cpu = B_cpu/C = 2 sec/job
+D_slowdisk = B_slowdisk/C = 0.5 sec/job
+D_fastdisk = B_fastdisk/C = 3 sec/job
+E[V_cpu] = C_cpu/C = 1 visit/job
+E[V_slowdisk] = C_slowdisk/C = 10 visits/job
+E[V_fastdisk] = C_fastdisk/C = 100 visits/job
+E[S_cpu] = B_cpu/C_cpu = 2 sec/visit
+E[S_slowdisk] = B_slowdisk/C_slowdisk = 0.05 sec/visit
+E[S_fastdisk] = B_fastdisk/C_fastdisk = 0.03 sec/visit
+
+D = 5.5
+X <= min(20/20.5, 1/3), so we are bounded by fastdisk.  Speeding that up will give us performance increase
+
+A)Faster CPU changes nothing
+B)Balancing Fast and slow disk
+
+E[V_slowdisk] + E[V_fastdisk] = 110
+S_slow * V_slow = S_fast * V_fast
+0.05 * (110 - V_fast) = 0.03 * V_fast
+5.5 - 0.05V_fast = 0.03V_fast
+5.5 = 0.08V_fast
+V_fast = 68.75
+V_slow = 41.25
+D_fast = 0.03 * 68.75 = 2.0625
+D_slow = 0.05 * 41.25 = 2.0625
+This changes D_max to 2.0625
+D = 6.125
+X <= min (20/21, 1/2.0625), so now higher throughput than initial
+(from .333 to .485)
+
+C) Buying a second fast disk
+Then, D_fast_1 = 1.5, D_fast_2 = 1.5, D_max = 2 (CPU-bound now)
+X <= min (20/20.5, 1/2) = 0.5
+
+D) Change D_cpu to 1
+Add second fast disk
+Now rebalance:
+V_slow + V_fast_1 + V_fast_2 = 110
+D_slow = 0.05 * V_slow
+D_fast_1 = 0.03 * V_fast_1
+D_fast_2 = 0.03 * V_fast_2
+
+V_slow + (5/3)V_slow + (5/3)V_slow = 110
+(13/3)V_slow = 110
+V_slow = 25.385
+V_fast_1 =  42.31
+V_fast_2 = 42.31
+D_slow = D_fast_1 = D_fast_2 = 1.27
+That's now D_max, so we have much more throughput
+D = 4.81
+X <= 1/1.27 = 0.787
+
+
+
