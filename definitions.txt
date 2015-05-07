@@ -61,6 +61,7 @@ E[R] = N/X - E[Z] (Response Time Law for Closed Systems)
 X_i = E[V_i] * X (Forced flow)
 rho_i = X * E[D_i]
 
+Closed Systems:
 X <= min(N/(D + E[Z]), 1/D_max)
 E[R] >= max(D, (N * D_max) - E[Z])
 N* = (D + E[Z]) / D_max
