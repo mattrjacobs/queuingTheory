@@ -1,0 +1,80 @@
+8.7.1
+
+P = ( .95 .05
+      .4  .6 )
+
+(w, b) = (w, b) * P
+w + b = 1
+w = .95w + .4b
+b = .05w + .6b
+w + b = 1
+b = .05(1-b) + .6b
+0.45b = .05
+b = 1/9
+w = 8/9
+
+8.10
+unbounded queue
+at each step, with p=1/40, a job arrives
+at each step, with q=1/30, a job departs
+
+r = p * (1-q): job arrives, nothing departs
+s = q * (1-p): job departs, nothing arrives
+
+stay at 0: 1-r
+0 -> 1: r
+1 -> 0: s
+stay at 1: 1-r-s
+1 -> 2: r
+2 -> 1: s
+
+P = ( 1-r  r     0     0     0  ...
+       s  1-r-s  r     0     0  ...
+	   0   s   1-r-s   r     0  ...
+	   0   0     s   1-r-s   r  ...
+	   ...
+
+a_0 = a_0(1-r) + a_1(s)
+a_1 = a_0(r) + a_1(1-r-s) + a_2(s)
+a_2 = a_1(r) + a_2(1-r-s) + a_3(s)
+a_3 = a_2(r) + a_3(1-r-s) + a_4(s)
+
+a_0(r) = a_1(s)
+0 = a_0(r) - a_1(r) - a_1(s) + a_2(s)
+0 = a_1(r) - a_2(r) - a_2(s) + a_3(s)
+...
+a_0 + a_1 + a_2 + a_3 + ... = 0
+
+a_0(r) = a_1(s)
+a_1(r) = a_2(s)
+a_2(r) = a_3(s)
+
+a_0(r/s) = a_1
+a_1(r/s) = a_2
+a_0(r/s)^2 = a_2
+a_0(r/s)^i = a_i
+
+a_0 * (1 + (r/s) + (r/s)^2 + (r/s)^3 + ...) = 1
+a_0 * (1/(1-(r/s))) = 1
+a_0 = 1-(r/s)
+
+a_0 = .256
+a_1 = .191
+a_2 = .142
+a_3 = .105
+a_4 = .078
+a_5 = .058
+a_6 = .043
+a_7 = .032
+
+E[N] = 0*a_0 + a_1 + 2a_2 + 3_a_3 + ...
+Let z = r/s
+a_0 = 1-z
+a_i = z^i(1-z)
+
+E[N] = 0*(1-z) + 1 * z(1-z) + 2 * z^2(1-z) + 3 * z^3(1-z) + ...
+E[N] = (1-z)(z + 2z^2 + 3z^3 + 4z^4 + ...)
+E[N] = (1-z)z * integral(1 + z + z^2 + z^3 + ...)
+E[N] = (1-z)z * integral(1/1-z)
+E[N] = (1-z)z * 1/(1-z)^2 = z/1-z
+E[N] = 2.9
