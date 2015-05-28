@@ -5,7 +5,7 @@ lambda     : average arrival rate
 * Properties of a server (independent of traffic)
 S     : size of a job - how long does it take to process in absence of other jobs
 E[S]  : expected service time
-mu    : average service rate
+μ     : average service rate
 
 * Properties of a system (server + traffic)
 T     : response time
@@ -13,7 +13,7 @@ E[T]  : mean response time
 T_q   : waiting/queuing time
 N_q   : number of jobs in the queue
 N     : number of jobs in the system
-rho_i : Device utilization of device i (fraction of time busy)
+ρ_i : Device utilization of device i (fraction of time busy)
 X_i   : Throughput of device i (rate of completions)
 Slowdown(j) : T(j)/S(j)
 
@@ -21,6 +21,29 @@ Slowdown(j) : T(j)/S(j)
 Z     : think time (time between receiving end of 1 job and starting a new one)
 R     : response time (time it takes system to do the work)
 T     : system time
+
+* Ergodocity of Markov Chains
+m_ij: expected number of time steps needed to first get to j | we are at i
+m_jj: expected number of time steps to get back to j | we are at j
+π_j : limiting probability of ending up in state j
+m_jj = 1/π_j
+p_j : percentage of time spent in state j
+f_j : probability that chain starting in state j ever returns to state j
+
+period of state j: GCD of set of integers n, such that P_jj_n > 0
+j is aperiodic iff period is 1
+Chain is aperiodic iff all states are aperiodic
+j is accessible from i if P_ij_n > 0 for some n > 0
+i and j communicate iff i is accessible frm j and vice versa
+Chain is irreducible iff all states communicate with one another
+If f_j = 1, j is recurrent
+If f_j < 1, j is transient
+In irreducible Markov chains, all states are recurrent or transient
+In positive-recurrent MC, mean m_ij is finite.
+In null-recurrent MC, mean m_ij is infinite.
+
+
+
 
 * Probability
 P{E v F} = P{E} + P{F} - P{E ^ F}
@@ -65,3 +88,4 @@ Closed Systems:
 X <= min(N/(D + E[Z]), 1/D_max)
 E[R] >= max(D, (N * D_max) - E[Z])
 N* = (D + E[Z]) / D_max
+
